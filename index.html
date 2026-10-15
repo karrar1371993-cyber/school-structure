@@ -27,14 +27,14 @@
  .official-summary-grid .sum-label{background:#e9e4d4!important;font-size:6.1pt;font-weight:800;padding:.7mm .3mm;min-height:8mm;display:flex;align-items:center;justify-content:center}
  .official-summary-grid .sum-value{font-size:7pt;font-weight:800;padding:1mm .3mm;min-height:6mm}
  .official-head h1{font-size:19pt;margin:0 0 1mm;color:#111}.official-head h2{font-size:13pt;margin:0}.official-head p{font-size:9pt;margin:1mm 0 0}
- .official-layout{display:grid;grid-template-columns:1.55fr 1.08fr 1.15fr;gap:2mm;min-height:0;flex:1}
+ .official-layout{display:grid;grid-template-columns:1.15fr 1fr 1.15fr;gap:2mm;min-height:0;flex:1}
  .official-col{display:flex;flex-direction:column;gap:1.5mm;min-width:0;min-height:0}
  .official-box{border:1px solid #333;min-width:0;overflow:hidden;display:flex;flex-direction:column}.official-box h3{background:#e7e1cd!important;text-align:center;font-size:8.5pt;margin:0;padding:1mm;border-bottom:1px solid #333;color:#111;flex-shrink:0}
  .official-table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}.official-table th,.official-table td{border:1px solid #777;padding:.65mm .8mm;font-size:6.5pt;line-height:1.15;text-align:center;white-space:normal;overflow-wrap:anywhere;color:#111}.official-table th{background:#e9e4d4!important;font-weight:800}.official-table td:first-child,.official-table th:first-child{width:6mm}
  .official-table.compact th,.official-table.compact td{font-size:6pt;padding:.55mm .6mm}.official-summary{font-size:6.8pt;display:flex;justify-content:space-around;padding:.8mm;font-weight:bold;flex-shrink:0}
  .official-sign{font-size:8pt;text-align:center;padding:1mm}.official-bottom{display:grid;grid-template-columns:1fr 1fr;gap:3mm;border-top:1px solid #444;padding-top:1mm;flex-shrink:0}
  .official-roster{flex:1}.official-roster .official-table{height:100%}.official-roster .official-table tbody tr{height:7.1mm}
- .official-middle-stats{flex-shrink:0}.official-advisors{flex:1;min-height:0}.official-staff{flex:1;min-height:0}.official-advisors .official-table,.official-staff .official-table{height:100%}
+ .official-middle-stats{flex-shrink:0}.official-subject-counts{flex:1;min-height:0}.official-advisors{flex:1.15;min-height:0}.official-staff{flex:1;min-height:0}.official-advisors .official-table,.official-staff .official-table{height:100%}
 }
 </style></head>
 <body>
@@ -102,16 +102,16 @@ function printOfficialForm(){
  <div class="official-summary-grid"><div><div class="sum-label">عدد التلاميذ الكلي</div><div class="sum-value">${totalBoys+totalGirls}</div></div><div><div class="sum-label">عدد الشعب</div><div class="sum-value">${data.students.reduce((n,g)=>n+g.sections.length,0)}</div></div><div><div class="sum-label">عدد المعلمين</div><div class="sum-value">${data.teachers.length}</div></div><div><div class="sum-label">عدد الصفوف</div><div class="sum-value">${data.students.length}</div></div><div><div class="sum-label">عدد المنسبين</div><div class="sum-value">${Number(data.leaveStats?.seconded)||0}</div></div><div><div class="sum-label">إجازة مرضية</div><div class="sum-value">${Number(data.leaveStats?.sick)||0}</div></div><div><div class="sum-label">إجازة ولادة</div><div class="sum-value">${Number(data.leaveStats?.birth)||0}</div></div><div><div class="sum-label">إجازة أمومة</div><div class="sum-value">${Number(data.leaveStats?.maternity)||0}</div></div><div><div class="sum-label">إجازات أخرى</div><div class="sum-value">${Number(data.leaveStats?.other)||0}</div></div></div>
  <div class="official-layout">
   <div class="official-col">
-
-   <section class="official-box official-staff"><h3>الموظفون</h3>${makeTable(['ت','اسم الموظف','العنوان الوظيفي','المهام'],Array.from({length:Math.max(5,data.staff.length)},(_,i)=>{const a=data.staff[i];return row([i+1,a?.name||'',a?.title||'',a?.unit||''])}),true)}</section>
+   <section class="official-box official-roster"><h3>سجل المعلمين</h3>${makeTable(['ت','الاسم الكامل','العنوان الوظيفي','الاختصاص','ملاحظات'],Array.from({length:30},(_,i)=>{const t=data.teachers[i];return row([i+1,t?.name||'',t?.title||'',t?.subject||'',t?.notes||''])}),true)}</section>
   </div>
   <div class="official-col">
    <section class="official-box official-middle-stats"><h3>إحصائية التلاميذ حسب الصفوف</h3>${makeTable(['الصف','الشعبة','ذكور','إناث','المجموع'],data.students.flatMap((g)=>g.sections.map((sec)=>row([g.grade,sec.name,Number(sec.boys)||0,Number(sec.girls)||0,(Number(sec.boys)||0)+(Number(sec.girls)||0)]))),true)}<div class="official-summary"><span>الذكور: ${totalBoys}</span><span>الإناث: ${totalGirls}</span><span>الكلي: ${totalBoys+totalGirls}</span></div></section>
-   <section class="official-box"><h3>الهيئة التعليمية حسب الاختصاص</h3>${makeTable(['ت','المادة','العدد'],subjectRows,true)}</section>
-   <section class="official-box official-advisors"><h3>مرشدو الصفوف</h3>${makeTable(['ت','اسم المرشد','الصف','الشعبة'],Array.from({length:Math.max(6,data.advisors.length)},(_,i)=>{const a=data.advisors[i];return row([i+1,a?.name||'',a?.grade||'',a?.section||''])}),true)}</section>
+   <section class="official-box official-subject-counts"><h3>الهيئة التعليمية حسب الاختصاص</h3>${makeTable(['ت','المادة','العدد'],subjectRows,true)}</section>
+   <div class="official-bottom"><div class="official-sign">مدير / مديرة المدرسة: __________________</div><div class="official-sign">التوقيع والختم: __________________</div></div>
   </div>
   <div class="official-col">
-   <section class="official-box official-roster"><h3>سجل المعلمين</h3>${makeTable(['ت','الاسم الكامل','العنوان الوظيفي','الاختصاص','ملاحظات'],Array.from({length:30},(_,i)=>{const t=data.teachers[i];return row([i+1,t?.name||'',t?.title||'',t?.subject||'',t?.notes||''])}),true)}</section>
+   <section class="official-box official-advisors"><h3>مرشدو الصفوف</h3>${makeTable(['ت','اسم المرشد','الصف','الشعبة'],Array.from({length:Math.max(6,data.advisors.length)},(_,i)=>{const a=data.advisors[i];return row([i+1,a?.name||'',a?.grade||'',a?.section||''])}),true)}</section>
+   <section class="official-box official-staff"><h3>الموظفون</h3>${makeTable(['ت','اسم الموظف','العنوان الوظيفي','المهام'],Array.from({length:Math.max(5,data.staff.length)},(_,i)=>{const a=data.staff[i];return row([i+1,a?.name||'',a?.title||'',a?.unit||''])}),true)}</section>
   </div>
  </div></div>`;
  document.body.classList.add('official-print-mode');window.print();setTimeout(()=>document.body.classList.remove('official-print-mode'),500);
