@@ -15,25 +15,30 @@
 
 #officialPrint{display:none}
 @media print{
- @page{size:A3 landscape;margin:4mm}
+ @page{size:A3 landscape;margin:7mm}
  body.official-print-mode>*:not(#officialPrint){display:none!important}
- body.official-print-mode #officialPrint{display:block!important;width:100%;height:100%;font-family:'Cairo',Tahoma,Arial,sans-serif;color:#111;direction:rtl}
- .official-sheet{height:289mm;width:100%;border:1.6px solid #222;padding:2mm;overflow:hidden;background:#fff}
- .official-page-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,.92fr);gap:2mm;height:100%;direction:rtl}
- .official-main{display:flex;flex-direction:column;gap:1.5mm;min-width:0;min-height:0}
- .official-head{display:grid;grid-template-columns:23mm minmax(0,1fr) 23mm;align-items:center;gap:2mm;min-height:28mm;padding:1mm 2mm;border-bottom:1.2px solid #333;text-align:center;background:linear-gradient(110deg,#dce5f0,#fff 48%,#e7edf5)}
- .official-logo{width:21mm;height:21mm;object-fit:contain;justify-self:center}.school-logo{width:22mm;height:22mm}
- .official-head-title{min-width:0}.official-ribbon{font-size:19pt;line-height:1.05;font-weight:900;color:#8c2840;background:#f7df91;border-radius:18mm;padding:1mm 4mm;display:inline-block}.official-year{font-size:11pt;font-weight:800;color:#65501c;margin:.5mm 0}.official-head h2{font-size:12pt;margin:.5mm 0;color:#111}.official-head p{font-size:6.5pt;margin:0;color:#222}
- .official-student-stats{flex-shrink:0;border:1px solid #333}.official-student-stats h3,.official-box h3{background:#e7e1cd!important;text-align:center;font-size:8pt;margin:0;padding:1mm;border-bottom:1px solid #333;color:#111;flex-shrink:0}
- .official-lower-grid{display:grid;grid-template-columns:1.18fr .94fr .94fr;gap:1.5mm;min-height:0;flex:1}
+ body.official-print-mode #officialPrint{display:block!important;width:100%;font-family:'Cairo',Tahoma,Arial,sans-serif;color:#111;direction:rtl}
+ .official-sheet{width:100%;height:282mm;border:1.4px solid #222;padding:4mm;overflow:hidden;background:#fff;page-break-after:auto;break-after:auto}
+ .official-sheet:last-child{page-break-after:auto;break-after:auto}
+ .official-page-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);gap:3mm;height:100%;direction:rtl}
+ .official-main{display:flex;flex-direction:column;gap:3mm;min-width:0;min-height:0}
+ .official-head{display:grid;grid-template-columns:30mm minmax(0,1fr) 30mm;align-items:center;gap:4mm;min-height:36mm;padding:2mm 4mm;border-bottom:1.5px solid #333;text-align:center;background:linear-gradient(110deg,#dce5f0,#fff 48%,#e7edf5)}
+ .official-logo{width:28mm;height:28mm;object-fit:contain;justify-self:center}.school-logo{width:29mm;height:29mm}
+ .official-head-title{min-width:0}.official-ribbon{font-size:25pt;line-height:1.15;font-weight:900;color:#8c2840;background:#f7df91;border-radius:18mm;padding:1.5mm 6mm;display:inline-block}.official-year{font-size:15pt;font-weight:800;color:#65501c;margin:1mm 0}.official-head h2{font-size:17pt;margin:1mm 0;color:#111}.official-head p{font-size:10pt;margin:0;color:#222}
+ .official-student-stats{flex-shrink:0;border:1px solid #333}.official-student-stats h3,.official-box h3{background:#e7e1cd!important;text-align:center;font-size:13pt;margin:0;padding:2mm;border-bottom:1px solid #333;color:#111;flex-shrink:0}
+ .official-lower-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:3mm;min-height:0;flex:1}
  .official-box{border:1px solid #333;min-width:0;overflow:hidden;display:flex;flex-direction:column}
- .official-table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;flex:1}.official-table th,.official-table td{border:1px solid #777;padding:.6mm .45mm;font-size:6pt;line-height:1.12;text-align:center;white-space:normal;overflow-wrap:anywhere;color:#111}.official-table th{background:#e9e4d4!important;font-weight:800}.official-table td:first-child,.official-table th:first-child{width:5mm}.official-table.compact th,.official-table.compact td{font-size:5.7pt;padding:.45mm .35mm}
- .official-teachers-side{height:100%;min-height:0}.official-teachers-side .official-table{height:100%}.official-teachers-side .official-table th,.official-teachers-side .official-table td{font-size:5.5pt;padding:.35mm .3mm;line-height:1.08}.official-teachers-side .official-table tbody tr{height:6.1mm}
- .official-advisors .official-table tbody tr,.official-staff .official-table tbody tr{height:6mm}
- .official-summary-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));border:1px solid #333;flex-shrink:0;position:relative;margin-top:1mm}.official-summary-grid>div{border-left:1px solid #777;text-align:center;min-width:0}.official-summary-grid .summary-title{grid-column:1/-1;background:#dfe5d2!important;font-weight:900;font-size:7pt;padding:.6mm;border-bottom:1px solid #333}.official-summary-grid .sum-label{background:#e9e4d4!important;font-size:5.4pt;font-weight:800;padding:.5mm .2mm;min-height:7mm;display:flex;align-items:center;justify-content:center}.official-summary-grid .sum-value{font-size:6.2pt;font-weight:800;padding:.8mm .2mm;min-height:5mm}
- .official-principal{font-size:8pt;font-weight:800;text-align:center;background:#f1e4b5;border:1px solid #777;padding:1mm;flex-shrink:0}
- .official-summary{font-size:6pt;display:flex;justify-content:space-around;padding:.5mm;font-weight:bold;flex-shrink:0}
+ .official-table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;flex:1}.official-table th,.official-table td{border:1px solid #777;padding:1.4mm 1mm;font-size:10pt;line-height:1.25;text-align:center;white-space:normal;overflow-wrap:anywhere;color:#111}.official-table th{background:#e9e4d4!important;font-weight:800}.official-table.compact th,.official-table.compact td{font-size:9.5pt;padding:1.2mm .8mm}
+ .official-teachers-side{height:100%;min-height:0;overflow:hidden;border:1px solid #333;display:flex;flex-direction:column}.official-teachers-side h3{background:#e7e1cd!important;text-align:center;font-size:14pt;margin:0;padding:2mm;border-bottom:1px solid #333;color:#111;flex-shrink:0}.official-teachers-side .official-table{height:100%;flex:1}.official-teachers-side .official-table th,.official-teachers-side .official-table td{font-size:10pt;padding:1.2mm 1mm;line-height:1.2}.official-teachers-side .official-table tbody tr{height:5.6mm}.official-teachers-side .official-table th,.official-teachers-side .official-table td{font-size:9pt;padding:.8mm .6mm;line-height:1.12}
+ .official-advisors .official-table tbody tr{height:8mm}
+ .official-summary-grid{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));border:1px solid #333;flex-shrink:0;position:relative;margin-top:1mm}.official-summary-grid>div{border-left:1px solid #777;text-align:center;min-width:0}.official-summary-grid .summary-title{grid-column:1/-1;background:#dfe5d2!important;font-weight:900;font-size:12pt;padding:1.2mm;border-bottom:1px solid #333}.official-summary-grid .sum-label{background:#e9e4d4!important;font-size:8.5pt;font-weight:800;padding:1mm .5mm;min-height:12mm;display:flex;align-items:center;justify-content:center}.official-summary-grid .sum-value{font-size:10pt;font-weight:800;padding:1.5mm .5mm;min-height:8mm}
+ .official-principal{font-size:13pt;font-weight:800;text-align:center;background:#f1e4b5;border:1px solid #777;padding:2mm;flex-shrink:0}
+ .official-summary{font-size:10pt;display:flex;justify-content:space-around;padding:1mm;font-weight:bold;flex-shrink:0}
  .official-bottom{display:none!important}
+ .official-teacher-page-title{text-align:center;font-size:22pt;font-weight:900;margin:0 0 3mm;padding:3mm;background:#e7e1cd;border:1px solid #333}
+ .official-teacher-page-subtitle{text-align:center;font-size:12pt;margin:0 0 4mm}
+ .official-teacher-page .official-table th,.official-teacher-page .official-table td{font-size:11pt;padding:1.2mm 1.5mm;line-height:1.2}
+ .official-teacher-page .official-table tbody tr{height:5.7mm}
 }
 </style></head>
 <body>
@@ -112,12 +117,11 @@ function printOfficialForm(){
    <div class="official-lower-grid">
     <section class="official-box official-subjects"><h3>الهيئة التعليمية حسب اختصاصاتهم</h3>${makeTable(['ت','المادة','ذكور','إناث','المجموع'],subjects.map((sub,i)=>{const ts=data.teachers.filter(t=>t.subject===sub);const male=ts.filter(t=>/ذكر|معلم/.test(t.gender||t.title||'')).length;const female=ts.length-male;return row([i+1,sub,male,female,ts.length])}),true)}</section>
     <section class="official-box official-advisors"><h3>مرشدو الصفوف</h3>${makeTable(['ت','اسم المرشد','الصف','الشعبة'],Array.from({length:Math.max(6,data.advisors.length)},(_,i)=>{const a=data.advisors[i];return row([i+1,a?.name||'',a?.grade||'',a?.section||''])}),true)}</section>
-    <section class="official-box official-staff"><h3>الموظفون</h3>${makeTable(['ت','الاسم الثلاثي','العنوان الوظيفي','المهام'],Array.from({length:Math.max(5,data.staff.length)},(_,i)=>{const a=data.staff[i];return row([i+1,a?.name||'',a?.title||'',a?.unit||''])}),true)}</section>
    </div>
-   <div class="official-summary-grid"><div class="summary-title">الخلاصة</div><div><div class="sum-label">عدد التلاميذ الكلي</div><div class="sum-value">${totalBoys+totalGirls}</div></div><div><div class="sum-label">عدد الشعب</div><div class="sum-value">${data.students.reduce((n,g)=>n+g.sections.length,0)}</div></div><div><div class="sum-label">عدد المعلمين</div><div class="sum-value">${data.teachers.length}</div></div><div><div class="sum-label">عدد الموظفين</div><div class="sum-value">${data.staff.length}</div></div><div><div class="sum-label">عدد الصفوف</div><div class="sum-value">${data.students.length}</div></div><div><div class="sum-label">عدد المنسبين</div><div class="sum-value">${Number(data.leaveStats?.seconded)||0}</div></div><div><div class="sum-label">إجازة مرضية</div><div class="sum-value">${Number(data.leaveStats?.sick)||0}</div></div><div><div class="sum-label">إجازة ولادة</div><div class="sum-value">${Number(data.leaveStats?.birth)||0}</div></div><div><div class="sum-label">إجازة أمومة</div><div class="sum-value">${Number(data.leaveStats?.maternity)||0}</div></div><div><div class="sum-label">إجازات أخرى</div><div class="sum-value">${Number(data.leaveStats?.other)||0}</div></div></div>
+   <div class="official-summary-grid"><div class="summary-title">الخلاصة</div><div><div class="sum-label">عدد التلاميذ الكلي</div><div class="sum-value">${totalBoys+totalGirls}</div></div><div><div class="sum-label">عدد الشعب</div><div class="sum-value">${data.students.reduce((n,g)=>n+g.sections.length,0)}</div></div><div><div class="sum-label">عدد المعلمين</div><div class="sum-value">${data.teachers.length}</div></div><div><div class="sum-label">عدد الصفوف</div><div class="sum-value">${data.students.length}</div></div><div><div class="sum-label">عدد المنسبين</div><div class="sum-value">${Number(data.leaveStats?.seconded)||0}</div></div><div><div class="sum-label">إجازة مرضية</div><div class="sum-value">${Number(data.leaveStats?.sick)||0}</div></div><div><div class="sum-label">إجازة ولادة</div><div class="sum-value">${Number(data.leaveStats?.birth)||0}</div></div><div><div class="sum-label">إجازة أمومة</div><div class="sum-value">${Number(data.leaveStats?.maternity)||0}</div></div><div><div class="sum-label">إجازات أخرى</div><div class="sum-value">${Number(data.leaveStats?.other)||0}</div></div></div>
    <div class="official-principal">مدير المدرسة / سعود محسن أحمد</div>
   </div>
-  <section class="official-box official-teachers-side"><h3>سجل المعلمين</h3>${makeTable(['ت','اسم المعلم الثلاثي','العنوان الوظيفي','الاختصاص','الملاحظات'],Array.from({length:Math.max(41,data.teachers.length)},(_,i)=>{const t=data.teachers[i];return row([i+1,t?.name||'',t?.title||'',t?.subject||'',t?.notes||''])}),true)}</section>
+  <section class="official-teachers-side"><h3>سجل المعلمين</h3>${makeTable(['ت','اسم المعلم الثلاثي','العنوان الوظيفي','الاختصاص','الملاحظات'],Array.from({length:Math.max(41,data.teachers.length)},(_,i)=>{const t=data.teachers[i];return row([i+1,t?.name||'',t?.title||'',t?.subject||'',t?.notes||''])}),true)}</section>
  </div>
 </div>`;
  document.body.classList.add('official-print-mode');window.print();setTimeout(()=>document.body.classList.remove('official-print-mode'),500);
