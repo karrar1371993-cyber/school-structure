@@ -108,8 +108,8 @@ function printOfficialForm(){
   <div class="official-col">
    <section class="official-box official-middle-stats"><h3>إحصائية التلاميذ حسب الصفوف</h3>${makeTable(['الصف','الشعبة','ذكور','إناث','المجموع'],data.students.flatMap((g)=>g.sections.map((sec)=>row([g.grade,sec.name,Number(sec.boys)||0,Number(sec.girls)||0,(Number(sec.boys)||0)+(Number(sec.girls)||0)]))),true)}<div class="official-summary"><span>الذكور: ${totalBoys}</span><span>الإناث: ${totalGirls}</span><span>الكلي: ${totalBoys+totalGirls}</span></div></section>
    <section class="official-box"><h3>الهيئة التعليمية حسب الاختصاص</h3>${makeTable(['ت','المادة','العدد'],subjectRows,true)}</section>
-   <section class="official-box official-advisors"><h3>مرشدو الصفوف</h3>${makeTable(['ت','اسم المرشد','الصف','الشعبة'],Array.from({length:15},(_,i)=>{const a=data.advisors[i];return row([i+1,a?.name||'',a?.grade||'',a?.section||''])}),true)}</section>
-   <section class="official-box official-staff"><h3>الموظفون</h3>${makeTable(['ت','اسم الموظف','العنوان الوظيفي','المهام'],Array.from({length:15},(_,i)=>{const a=data.staff[i];return row([i+1,a?.name||'',a?.title||'',a?.unit||''])}),true)}</section>
+   <section class="official-box official-advisors"><h3>مرشدو الصفوف</h3>${makeTable(['ت','اسم المرشد','الصف','الشعبة'],Array.from({length:Math.max(6,data.advisors.length)},(_,i)=>{const a=data.advisors[i];return row([i+1,a?.name||'',a?.grade||'',a?.section||''])}),true)}</section>
+   <section class="official-box official-staff"><h3>الموظفون</h3>${makeTable(['ت','اسم الموظف','العنوان الوظيفي','المهام'],Array.from({length:Math.max(5,data.staff.length)},(_,i)=>{const a=data.staff[i];return row([i+1,a?.name||'',a?.title||'',a?.unit||''])}),true)}</section>
   </div>
   <div class="official-col">
    <section class="official-box official-roster"><h3>سجل المعلمين والموظفين</h3>${makeTable(['ت','الاسم الكامل','العنوان الوظيفي','الاختصاص / المهام','ملاحظات'],Array.from({length:30},(_,i)=>{const t=data.teachers[i]||data.staff[i-data.teachers.length];return row([i+1,t?.name||'',t?.title||'',t?.subject||t?.unit||'',t?.notes||''])}),true)}</section>
