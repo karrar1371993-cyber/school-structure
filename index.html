@@ -34,7 +34,7 @@
  .official-table.compact th,.official-table.compact td{font-size:6pt;padding:.55mm .6mm}.official-summary{font-size:6.8pt;display:flex;justify-content:space-around;padding:.8mm;font-weight:bold;flex-shrink:0}
  .official-sign{font-size:8pt;text-align:center;padding:1mm}.official-bottom{display:grid;grid-template-columns:1fr 1fr;gap:3mm;border-top:1px solid #444;padding-top:1mm;flex-shrink:0}
  .official-roster{flex:1}.official-roster .official-table{height:100%}.official-roster .official-table tbody tr{height:7.1mm}
- .official-middle-stats{flex-shrink:0}.official-advisors{flex:1}.official-staff{flex:1}
+ .official-middle-stats{flex-shrink:0}.official-advisors{flex:1;min-height:0}.official-staff{flex:1;min-height:0}.official-advisors .official-table,.official-staff .official-table{height:100%}
 }
 </style></head>
 <body>
@@ -102,8 +102,8 @@ function printOfficialForm(){
  <div class="official-summary-grid"><div><div class="sum-label">عدد التلاميذ الكلي</div><div class="sum-value">${totalBoys+totalGirls}</div></div><div><div class="sum-label">عدد الشعب</div><div class="sum-value">${data.students.reduce((n,g)=>n+g.sections.length,0)}</div></div><div><div class="sum-label">عدد المعلمين</div><div class="sum-value">${data.teachers.length}</div></div><div><div class="sum-label">عدد الصفوف</div><div class="sum-value">${data.students.length}</div></div><div><div class="sum-label">عدد المنسبين</div><div class="sum-value">${Number(data.leaveStats?.seconded)||0}</div></div><div><div class="sum-label">إجازة مرضية</div><div class="sum-value">${Number(data.leaveStats?.sick)||0}</div></div><div><div class="sum-label">إجازة ولادة</div><div class="sum-value">${Number(data.leaveStats?.birth)||0}</div></div><div><div class="sum-label">إجازة أمومة</div><div class="sum-value">${Number(data.leaveStats?.maternity)||0}</div></div><div><div class="sum-label">إجازات أخرى</div><div class="sum-value">${Number(data.leaveStats?.other)||0}</div></div></div>
  <div class="official-layout">
   <div class="official-col">
-   <section class="official-box official-roster"><h3>الهيئة التعليمية حسب الاختصاص</h3>${makeTable(['ت','اسم المعلم','العنوان الوظيفي','الاختصاص','ملاحظات'],Array.from({length:30},(_,i)=>{const t=data.teachers[i];return row([i+1,t?.name||'',t?.title||'',t?.subject||'',t?.notes||''])}),true)}</section>
-   <div class="official-bottom"><div class="official-sign">مدير / مديرة المدرسة: __________________</div><div class="official-sign">التوقيع والختم: __________________</div></div>
+
+   <section class="official-box official-staff"><h3>الموظفون</h3>${makeTable(['ت','اسم الموظف','العنوان الوظيفي','المهام'],Array.from({length:Math.max(5,data.staff.length)},(_,i)=>{const a=data.staff[i];return row([i+1,a?.name||'',a?.title||'',a?.unit||''])}),true)}</section>
   </div>
   <div class="official-col">
    <section class="official-box official-middle-stats"><h3>إحصائية التلاميذ حسب الصفوف</h3>${makeTable(['الصف','الشعبة','ذكور','إناث','المجموع'],data.students.flatMap((g)=>g.sections.map((sec)=>row([g.grade,sec.name,Number(sec.boys)||0,Number(sec.girls)||0,(Number(sec.boys)||0)+(Number(sec.girls)||0)]))),true)}<div class="official-summary"><span>الذكور: ${totalBoys}</span><span>الإناث: ${totalGirls}</span><span>الكلي: ${totalBoys+totalGirls}</span></div></section>
